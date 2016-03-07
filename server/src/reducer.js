@@ -166,9 +166,16 @@ function resolve(state) {
     winningCards = winningCards.concat(hiddenDecks.get(players[1]).toJS());
   }
 
-  const winnerDeck = state
-                       .getIn(['playerDecks', winner])
-                       .concat(List(winningCards));
+  let winnerDeck;
+  if(state.getIn(['playerDecks', winner])) {
+    winnerDeck = state
+      .getIn(['playerDecks', winner])
+      .concat(List(winningCards));
+  } else {
+    winnerDeck = state
+      .setIn(['playerDecks', winner])
+      .List(winningCards);
+  }
 
 
   const newState = state
