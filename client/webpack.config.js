@@ -11,10 +11,13 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
-    }]
+    },
+    { test: /\.svg$/, loader: 'file-loader?name=img/img-[hash:6].[ext]' }, 
+    { test: /\.css$/, loader: 'css-loader' }
+    ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.css']
   },
   output: {
     path: __dirname + '/dist',

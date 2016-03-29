@@ -13,3 +13,8 @@ Object.keys(window).forEach((key) => {
     global[key] = window[key]
   }
 });
+
+// requiring svg will return a string, instead of the file
+require.extensions['.svg'] = (module, filename) => {
+  module.exports = filename;
+}

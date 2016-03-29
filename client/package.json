@@ -24,6 +24,8 @@
     "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "chai-immutable": "^1.5.3",
+    "file-loader": "^0.8.5",
+    "ignore-styles": "^1.2.0",
     "immutable": "^3.7.6",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
