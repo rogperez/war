@@ -5,7 +5,7 @@ import HiddenDeck from './HiddenDeck';
 import Deck from './Deck';
 
 export default React.createClass({
-  // Render Helpers =======================
+  // ------------> Render Helpers
   renderDeck: function() {
     if (this.props.deck) {
       return <Deck deck={this.props.deck} />
