@@ -1,34 +1,47 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import Hand from './Hand';
 import NewGameForm from './NewGameForm';
 
-export default React.createClass({
+export const War =  React.createClass({
   getPlayers: function() {
     return this.props.players || [];
   },
   getPlayerState: function(player) {
     return {
-      playCards: ['1S'],
-      deck: ['2H', '3D'],
-      hiddenDeck: ['1H', '2D', '3S']
+      deck: this.props.playerDecks.get(player),
+      playCard: this.props.match.get(player)
+
     };
   },
   render: function() {
-    return <div className="war">
-      {
-        this.getPlayers().length > 0 ?
-          this.getPlayers().map(player =>
-            <Hand
-              key={player}
-              player={player}
-              deck={this.getPlayerState(player).deck}
-              playCard={this.getPlayerState(player).playCards}
-              hiddenDeck={this.getPlayerState(player).hiddenDeck}
-            />
-          )
-        :
-        <NewGameForm />
-      }
-    </div>;
+    return 
+      <div className="war">
+        {
+          this.getPlayers().count === 2 ?
+            this.getPlayers().map(player =>
+              <Hand
+                key={player}
+                player={player}
+                deck={this.getPlayerState(player).deck}
+                playCard={this.getPlayerState(player).playCard}
+                hiddenDeck={this.getPlayerState(player).hiddenDeck}
+              />
+            )
+          :
+          <NewGameForm />
+        }
+      </div>;
   }
 });
+
+function mapStateToProps(state) {
+  return {
+    players: state.get('players'),
+    playerDecks: state.get('playerDecks'),
+  };
+}
+
+export const WarContainer = connect(mapStateToProps)(War);
+

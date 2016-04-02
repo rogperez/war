@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
+  Simulate,
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
@@ -14,8 +15,7 @@ describe('deck', () => {
     const component = renderIntoDocument(
       <Deck deck={deck} />
     );
-    const cards =
-      scryRenderedDOMComponentsWithTag(component, 'img');
+    const cards = scryRenderedDOMComponentsWithTag(component, 'img');
 
     expect(cards.length).to.equal(1);
   });
@@ -36,5 +36,17 @@ describe('deck', () => {
     );
 
     expect(ReactDOM.findDOMNode(component.refs.lastCard)).not.to.be.ok;
+  });
+
+  it('invokes the draw callback when clicked', () => {
+    let clicked = false;
+    const deck = ['1H'];
+    const component = renderIntoDocument(
+      <Deck deck={deck} draw={() => clicked = true} />
+    );
+    const card = scryRenderedDOMComponentsWithTag(component, 'img');
+    Simulate.click(card[0]);
+
+    expect(clicked).to.be.true;
   });
 });
