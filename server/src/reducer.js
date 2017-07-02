@@ -116,6 +116,7 @@ function compareMatch(state) {
           player2Decks.get('hiddenDeck');
 
       let newState = state
+        .delete('match')
         .concat({
           drawMatches: drawMatches,
           hiddenDecks: Map({
@@ -177,7 +178,6 @@ function resolve(state) {
       .List(winningCards);
   }
 
-
   const newState = state
     .delete('winner')
     .delete('match')
@@ -185,13 +185,14 @@ function resolve(state) {
     .delete('hiddenDecks')
     .setIn(['playerDecks', winner], winnerDeck);
 
-    //if one player is left with 0 cards here is where we crown the victor
-    if (state.getIn(['playerDecks', players[0]]).isEmpty()) {
-      return Map({victor: players[1]});
-    }
-    if (state.getIn(['playerDecks', players[1]]).isEmpty()) {
-      return Map({victor: players[0]});
-    }
+
+  //if one player is left with 0 cards here is where we crown the victor
+  if (newState.getIn(['playerDecks', players[0]]).isEmpty()) {
+    return Map({victor: players[1]});
+  }
+  if (newState.getIn(['playerDecks', players[1]]).isEmpty()) {
+    return Map({victor: players[0]});
+  }
   
   return newState;
 }

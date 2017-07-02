@@ -256,6 +256,7 @@ describe('reducer', () => {
 
         const action = {type: 'COMPARE'};
         let nextState = reducer(initialState, action);
+        expect(nextState.get('match')).not.to.be.ok;
         expect(nextState.get('drawMatches').size).to.equal(2);
       });
 
@@ -402,6 +403,7 @@ describe('reducer', () => {
         let nextState = reducer(initialState, action);
 
         expect(nextState.get('drawMatches')).to.be.ok;
+        expect(nextState.get('match')).not.to.be.ok;
         expect(nextState.get('drawMatches').first()).to.equal(fromJS(
           initialState.get('match')
         ));
@@ -561,7 +563,6 @@ describe('reducer', () => {
         ).to.equal(4);
         expect(nextState.getIn(['match', players[1]])).not.to.be.ok;
       });
-
     });
   });
 
@@ -656,6 +657,29 @@ describe('reducer', () => {
         .to.equal(6);
       expect(nextState.getIn(['playerDecks', players[0]]).size)
         .to.equal(1);
+    });
+
+    it('divies out cards to the player who won, even if that player had 0 cards', () => {
+      const players = ['Kanye', 'Fabolous'];
+      const initialState = fromJS({
+        winner: players[1],
+        match: {
+          [players[0]]: '2C',
+          [players[1]]: '3H'
+        },
+        playerDecks: {
+          [players[0]]: ['1H'],
+          [players[1]]: []
+        }
+      });
+      const action = {type: 'RESOLVE'};
+      const nextState = reducer(initialState, action);
+      expect(nextState.get('victor')).not.to.be.ok;
+      expect(nextState.get('match')).not.to.be.ok;
+      expect(nextState.getIn(['playerDecks', players[1]]).size).
+        to.eq(2);
+      expect(nextState.getIn(['playerDecks', players[0]]).size).
+        to.eq(1);
     });
 
     it('crowns a victor if there is one', () => {
