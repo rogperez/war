@@ -34,7 +34,7 @@ This is a sequence of a real game being played out.
 ```javascript
 {
     match: {
-        Kanye: ‘1A'
+        Kanye: '1A'
     },
     playerDecks: {
         Kanye: Array[25],
@@ -43,7 +43,7 @@ This is a sequence of a real game being played out.
 }
 
 ```
-NOTE: at this point Kanye (player 1) can not draw again since he’s already in the match
+NOTE: at this point Kanye (player 1) can not draw again since he's already in the match
 
 ## Win/Loss
 ---------------------------------------------------------------------
@@ -53,8 +53,8 @@ NOTE: at this point Kanye (player 1) can not draw again since he’s already in 
 ```javascript
 {
     match: {
-        Kanye: ‘1A’,
-        Kim: ‘3H'
+        Kanye: '1A',
+        Kim: '3H'
     },
     playerDecks: {
         Kanye: Arary[25],
@@ -67,10 +67,10 @@ NOTE: at this point Kanye (player 1) can not draw again since he’s already in 
 
 ```javascript
 {
-     winner: ‘Kim’,
+     winner: 'Kim',
      match: {
-          Kanye: ‘1A’,
-          Kim: ‘3H'
+          Kanye: '1A',
+          Kim: '3H'
      },
      playerDecks: {
           Kanye: Array[25],
@@ -89,8 +89,8 @@ Obviously this is more convoluted.
 ```javascript
 {
      match: {
-          Kanye: ‘1A’,
-          Kim: ‘1S'
+          Kanye: '1A',
+          Kim: '1S'
      },
      playerDecks: {
           Kanye: Arary[25],
@@ -105,11 +105,11 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
    drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1Sb’ }
+          { Kanye: '1A', Kim: '1Sb' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘2H’, ‘6D’, ‘12S’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['2H', '6D', '12S']
      },
      playerDecks: {
           Kanye: Array[22],
@@ -123,14 +123,14 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      match: {
-          Kim: ‘3H’
+          Kim: '3H'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ }
+          { Kanye: '1A', Kim: '1A' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[22],
@@ -147,15 +147,15 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      match: {
-          Kanye: ‘2C’,
-          Kim: ‘3H’
+          Kanye: '2C',
+          Kim: '3H'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ }
+          { Kanye: '1A', Kim: '1A' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[21],
@@ -168,17 +168,17 @@ Here we push the match into the draw matches array, as well as begin adding card
 
 ```javascript
 {
-     winner: ‘Kim’,
+     winner: 'Kim',
      match: {
-          Kanye: ‘2C’,
-          Kim: ‘3H’
+          Kanye: '2C',
+          Kim: '3H'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ }
+          { Kanye: '1A', Kim: '1A' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[21],
@@ -195,15 +195,15 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      match: {
-          Kanye: ‘3C’,
-          Kim: ‘3H’
+          Kanye: '3C',
+          Kim: '3H'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ }
+          { Kanye: '1A', Kim: '1A' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[21],
@@ -217,12 +217,12 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ },
-          { Kanye: ‘3C’, Kim: ‘3H’ }
+          { Kanye: '1A', Kim: '1A' },
+          { Kanye: '3C', Kim: '3H' }
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’, ‘3D’, ‘1S’, ‘6C'],
-          Kim: [‘7H’, ‘9D’, ‘11C’, ‘3C’, ‘2S’, ‘9S']
+          Kanye: ['4H', '2D', '1S', '3D', '1S', '6C'],
+          Kim: ['7H', '9D', '11C', '3C', '2S', '9S']
      },
      playerDecks: {
           Kanye: Array[18],
@@ -239,15 +239,15 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      match: {
-          Kanye: ‘9C’
+          Kanye: '9C'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ },
-          { Kanye: ‘3C’, Kim: ‘3H’ },
+          { Kanye: '1A', Kim: '1A' },
+          { Kanye: '3C', Kim: '3H' },
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[0], // player has run out of cards
@@ -261,16 +261,16 @@ Here we push the match into the draw matches array, as well as begin adding card
 ```javascript
 {
      match: {
-          Kanye: ‘9C’,
-          Kim: ‘10H’
+          Kanye: '9C',
+          Kim: '10H'
      },
      drawMatches: [
-          { Kanye: ‘1A’, Kim: ‘1A’ },
-          { Kanye: ‘3C’, Kim: ‘3H’ },
+          { Kanye: '1A', Kim: '1A' },
+          { Kanye: '3C', Kim: '3H' },
      ],
      hiddenDecks: {
-          Kanye: [‘4H’, ‘2D’, ‘1S’],
-          Kim: [‘7H’, ‘9D’, ‘11C’]
+          Kanye: ['4H', '2D', '1S'],
+          Kim: ['7H', '9D', '11C']
      },
      playerDecks: {
           Kanye: Array[0],
