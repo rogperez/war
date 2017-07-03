@@ -10,40 +10,31 @@ import {expect} from 'chai';
 import NewGameForm from '../../src/components/NewGameForm';
 
 describe('new game form', () => {
-  it('enables button if player1 and player2 props exist', () => {
-    const component = renderIntoDocument(
-      <NewGameForm player1Input="Kanye" player2Input="Fabolous" />
-    );
-    const inputFields =
-      scryRenderedDOMComponentsWithTag(component, 'input');
-    const button =
-      scryRenderedDOMComponentsWithTag(component, 'button');
-
-    expect(button[0].hasAttribute('disabled')).to.equal(false);
-  });
-
-  it('disabled button if player1Input and player2Input props don\'t exist', () => {
+  it('disabled button if player1Input and player2Input are empty', () => {
     const component = renderIntoDocument(
       <NewGameForm />
     );
-    const inputFields =
-      scryRenderedDOMComponentsWithTag(component, 'input');
-    const button =
-      scryRenderedDOMComponentsWithTag(component, 'button');
+    const inputFields = scryRenderedDOMComponentsWithTag(component, 'input');
+    const button = scryRenderedDOMComponentsWithTag(component, 'button')[0];
 
-    expect(button[0].hasAttribute('disabled')).to.equal(true);
+    expect(button.hasAttribute('disabled')).to.equal(true);
   });
 
-  it('disabled button if player1Input and player2Input props are empty strings', () => {
+  it('disabled button if a single input is empty', () => {
     const component = renderIntoDocument(
-      <NewGameForm player1Input='' player2Input='' />
+      <NewGameForm />
     );
-    const inputFields =
-      scryRenderedDOMComponentsWithTag(component, 'input');
-    const button =
-      scryRenderedDOMComponentsWithTag(component, 'button');
 
-    expect(button[0].hasAttribute('disabled')).to.equal(true);
+    const inputFields = scryRenderedDOMComponentsWithTag(component, 'input');
+    const button = scryRenderedDOMComponentsWithTag(component, 'button')[0];
+
+    inputFields[0].value = 'hey';
+    Simulate.change(inputFields[0]);
+    expect(button.hasAttribute('disabled')).to.equal(true);
+
+    inputFields[1].value = 'ho';
+    Simulate.change(inputFields[1]);
+    expect(button.hasAttribute('disabled')).to.equal(false);
   });
 
   it('invokes callback when button is clicked', () => {
@@ -51,12 +42,16 @@ describe('new game form', () => {
     const handleClick = () => callbackInvoked = true;
 
     const component = renderIntoDocument(
-      <NewGameForm player1Input='Kanye' player2Input='Fabolous' 
-        startGame={handleClick}
-      />
+      <NewGameForm startGame={handleClick} />
     );
-    const button =
-      scryRenderedDOMComponentsWithTag(component, 'button');
+
+    const inputFields = scryRenderedDOMComponentsWithTag(component, 'input');
+    const button = scryRenderedDOMComponentsWithTag(component, 'button');
+
+    inputFields[0].value = 'hey';
+    Simulate.change(inputFields[0]);
+    inputFields[1].value = 'ho';
+    Simulate.change(inputFields[1]);
 
     Simulate.click(button[0]);
     expect(callbackInvoked).to.equal(true);

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { List } from 'immutable';
 import {
   Simulate,
   renderIntoDocument,
@@ -11,7 +12,7 @@ import Deck from '../../src/components/Deck';
 
 describe('deck', () => {
   it('renders a card image', () => {
-    const deck = ['1H'];
+    const deck = new List(['1H']);
     const component = renderIntoDocument(
       <Deck deck={deck} />
     );
@@ -21,26 +22,26 @@ describe('deck', () => {
   });
 
   it('renders a last card warning when no more cards in deck', () => {
-    const deck = [];
+    const deck = new List([]);
     const component = renderIntoDocument(
       <Deck deck={deck} />
     );
 
-    expect(ReactDOM.findDOMNode(component.refs.lastCard)).to.be.ok;
+    expect(ReactDOM.findDOMNode(component.refs.emptyDeck)).to.be.ok;
   });
 
   it('does not render last card warning if more cards available', () => {
-    const deck = ['1H'];
+    const deck = new List(['1H']);
     const component = renderIntoDocument(
       <Deck deck={deck} />
     );
 
-    expect(ReactDOM.findDOMNode(component.refs.lastCard)).not.to.be.ok;
+    expect(ReactDOM.findDOMNode(component.refs.emptyDeck)).not.to.be.ok;
   });
 
   it('invokes the draw callback when clicked', () => {
     let clicked = false;
-    const deck = ['1H'];
+    const deck = new List(['1H']);
     const component = renderIntoDocument(
       <Deck deck={deck} draw={() => clicked = true} />
     );

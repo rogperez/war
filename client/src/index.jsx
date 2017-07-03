@@ -9,15 +9,17 @@ const store = createStore(reducer);
 store.dispatch({
   type: 'SET_STATE',
   state: {
-    playerDecks: { Roger: ['1S'] },
+    match: { Player1: '2S', Player2: '1C' },
+    hiddenDecks: { Player1: ['4H', '2D', '1S'], Player2: ['4H', '2D', '1S'] },
     playerDecks: {
-      Roger: ['1S']
+      Player1: ['1S'],
+      Player2: ['2C']
     }
   }
 });
 
 // TODO: fix css, currently in index.html
-require('./style/app.css')
+//require('./style/app.css')
 
 ReactDOM.render(
   <Provider store={store}>

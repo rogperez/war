@@ -4,44 +4,54 @@ import {connect} from 'react-redux';
 import Hand from './Hand';
 import NewGameForm from './NewGameForm';
 
-export const War =  React.createClass({
+const War = React.createClass({
   getPlayers: function() {
-    return this.props.players || [];
+    if(this.props.playerDecks) {
+      return Object.keys(this.props.playerDecks.toJS());
+    }
+    return [];
   },
+
   getPlayerState: function(player) {
     return {
-      deck: this.props.playerDecks.get(player),
-      playCard: this.props.match.get(player)
-
+      deck: (this.props.playerDecks ? this.props.playerDecks.get(player) : null),
+      playCard: (this.props.match ? this.props.match.get(player) : null),
+      hiddenDeck: (this.props.hiddenDecks ? this.props.hiddenDecks.get(player) : null)
     };
   },
+
   render: function() {
-    return 
+    return (
       <div className="war">
         {
-          this.getPlayers().count === 2 ?
+          this.getPlayers().length === 2 ?
             this.getPlayers().map(player =>
-              <Hand
-                key={player}
-                player={player}
-                deck={this.getPlayerState(player).deck}
-                playCard={this.getPlayerState(player).playCard}
-                hiddenDeck={this.getPlayerState(player).hiddenDeck}
-              />
+              <div className="hand" key={player}>
+                <div>{player}</div>
+                <Hand
+                  player={player}
+                  deck={this.getPlayerState(player).deck}
+                  playCard={this.getPlayerState(player).playCard}
+                  hiddenDeck={this.getPlayerState(player).hiddenDeck}
+                />
+              </div>
             )
           :
           <NewGameForm />
         }
-      </div>;
+      </div>
+    )
   }
 });
 
+const WarContainer = connect(mapStateToProps)(War);
+
 function mapStateToProps(state) {
   return {
-    players: state.get('players'),
     playerDecks: state.get('playerDecks'),
+    match: state.get('match'),
+    hiddenDecks: state.get('hiddenDecks')
   };
 }
 
-export const WarContainer = connect(mapStateToProps)(War);
-
+module.exports = { War, WarContainer }

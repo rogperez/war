@@ -12,12 +12,14 @@ export default React.createClass({
     }
     return null;
   },
+
   renderHiddenDeck: function() {
     if (this.props.hiddenDeck) {
       return <HiddenDeck hiddenDeck={this.props.hiddenDeck} />;
     }
     return null;
   },
+
   renderCard: function() {
     if (this.props.playCard) {
       return <Card card={this.props.playCard} />;
