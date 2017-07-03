@@ -26,8 +26,8 @@ const War = React.createClass({
         {
           this.getPlayers().length === 2 ?
             this.getPlayers().map(player =>
-              <div className="hand" key={player}>
-                <div>{player}</div>
+              <div key={player}>
+                {player}
                 <Hand
                   player={player}
                   deck={this.getPlayerState(player).deck}

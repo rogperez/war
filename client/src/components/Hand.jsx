@@ -28,7 +28,7 @@ export default React.createClass({
   },
 
   render: function() {
-    return <div>
+    return <div className="hand">
       {this.renderDeck()}
       {this.renderHiddenDeck()}
       {this.renderCard()}

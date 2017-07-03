@@ -12,6 +12,9 @@ export default function startServer(store) {
   io.on('connection', (socket) => {
     console.log('A new connection has happened my dude');
     socket.emit('state', store.getState().toJS());
-    socket.on('action', store.dispatch.bind(store));
+    socket.on('action', (action) => {
+      store.dispatch(action);
+      console.log(store.getState().toJS());
+    });
   });
 }
