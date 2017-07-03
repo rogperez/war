@@ -211,6 +211,8 @@ export default function reducer(state=INITIAL_STATE, action) {
     return compareMatch(state);
   case 'RESOLVE':
     return resolve(state);
+  case 'RESET':
+    return INITIAL_STATE;
   }
   return state;
 }

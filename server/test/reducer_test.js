@@ -708,4 +708,24 @@ describe('reducer', () => {
     });
   });
 
+  describe('reset', () => {
+    it('resets the state to the initial state', () => {
+      const players = ['Kanye', 'Fabolous'];
+      const initialState = fromJS({
+        winner: players[1],
+        match: {
+          [players[0]]: '2C',
+          [players[1]]: '3H'
+        },
+        playerDecks: {
+          [players[0]]: [],
+          [players[1]]: ['1H', '2H', '3H', '4H']
+        }
+      });
+
+      const action = {type: 'RESET'};
+      const nextState = reducer(initialState, action);
+      expect(nextState).to.equal(fromJS({deck:deck}));
+    });
+  });
 });
