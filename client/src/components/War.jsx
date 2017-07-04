@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {List} from 'immutable';
 
 import Hand from './Hand';
 import NewGameForm from './NewGameForm';
@@ -35,6 +36,7 @@ const War = React.createClass({
                   deck={this.getPlayerState(player).deck}
                   playCard={this.getPlayerState(player).playCard}
                   hiddenDeck={this.getPlayerState(player).hiddenDeck}
+                  winner={this.props.winner}
                   {...this.props}
                 />
               </div>
@@ -42,6 +44,8 @@ const War = React.createClass({
           :
           <NewGameForm {...this.props} />
         }
+        <button onClick={this.props.compare}>Compare Match</button>
+        <button onClick={this.props.resolve}>Resolve Match</button>
       </div>
     )
   }
@@ -54,6 +58,7 @@ const WarContainer = connect(
 
 function mapStateToProps(state) {
   return {
+    winner: state.get('winner', ''),
     playerDecks: state.get('playerDecks'),
     match: state.get('match'),
     hiddenDecks: state.get('hiddenDecks')

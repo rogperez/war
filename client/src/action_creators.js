@@ -35,3 +35,10 @@ export function compare() {
     type: 'COMPARE'
   }
 }
+
+export function resolve() {
+  return {
+    meta: { remote: true },
+    type: 'RESOLVE'
+  }
+}

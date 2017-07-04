@@ -30,7 +30,11 @@ export default React.createClass({
   },
 
   render: function() {
-    return <div className="hand">
+    const winnerHand = this.props.winner === this.props.player;
+    const winnerClass = winnerHand ? 'winner' : '';
+    const classList = `${winnerClass} hand`;
+    return <div className={classList}>
+      {winnerHand ? <div classList={winnerClass}>Winner!</div>:null}
       {this.renderDeck()}
       {this.renderHiddenDeck()}
       {this.renderCard()}

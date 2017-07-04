@@ -8,7 +8,7 @@ export default React.createClass({
           <li key={card}>
             <img
               className="card"
-              src={require(`../../assets/img/${card}.svg`)} 
+              src={require(`../../assets/img/card-back.svg`)} 
             />
           </li>
         )}
