@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Hand from './Hand';
 import NewGameForm from './NewGameForm';
+import * as actionCreators from '../action_creators';
 
 const War = React.createClass({
   getPlayers: function() {
@@ -37,14 +38,17 @@ const War = React.createClass({
               </div>
             )
           :
-          <NewGameForm />
+          <NewGameForm {...this.props} />
         }
       </div>
     )
   }
 });
 
-const WarContainer = connect(mapStateToProps)(War);
+const WarContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(War);
 
 function mapStateToProps(state) {
   return {

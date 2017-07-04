@@ -42,7 +42,7 @@ describe('new game form', () => {
     const handleClick = () => callbackInvoked = true;
 
     const component = renderIntoDocument(
-      <NewGameForm startGame={handleClick} />
+      <NewGameForm addPlayers={handleClick} />
     );
 
     const inputFields = scryRenderedDOMComponentsWithTag(component, 'input');

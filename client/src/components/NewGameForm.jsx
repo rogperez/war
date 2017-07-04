@@ -27,7 +27,7 @@ export default React.createClass({
 
   handleFormSubmit: function(e) {
     e.preventDefault();
-    this.props.startGame();
+    this.props.addPlayers();
   },
 
   render: function() {

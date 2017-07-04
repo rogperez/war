@@ -4,7 +4,6 @@ import {expect} from 'chai';
 import reducer from '../src/reducer';
 
 describe('reducer', () => {
-
   it('handles SET_STATE', () => {
     const initialState = Map();
     const action = {
@@ -24,9 +23,9 @@ describe('reducer', () => {
     const initialState = Map();
     const action = {
       type: 'SET_STATE',
-      state: {
-        deck: ['1H']
-      }
+      state: Map({
+        deck: List(['1H'])
+      })
     };
     const nextState = reducer(initialState, action);
 
@@ -48,5 +47,4 @@ describe('reducer', () => {
       deck: ['1H']
     }));
   });
-
 });
