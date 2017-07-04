@@ -1,4 +1,5 @@
 import React from 'react';
+import {List} from 'immutable';
 
 export default React.createClass({
   getInitialState: function() {
@@ -27,7 +28,7 @@ export default React.createClass({
 
   handleFormSubmit: function(e) {
     e.preventDefault();
-    this.props.addPlayers();
+    this.props.addPlayers(List([this.state.player1, this.state.player2]));
   },
 
   render: function() {

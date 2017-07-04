@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {List, fromJS} from 'immutable';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag,
@@ -37,9 +38,27 @@ describe('new game form', () => {
     expect(button.hasAttribute('disabled')).to.equal(false);
   });
 
-  it('invokes callback when button is clicked', () => {
-    let callbackInvoked = false;
-    const handleClick = () => callbackInvoked = true;
+  it('sets the player from state', () => {
+    const component = renderIntoDocument(
+      <NewGameForm />
+    );
+
+    const inputFields = scryRenderedDOMComponentsWithTag(component, 'input');
+    const button = scryRenderedDOMComponentsWithTag(component, 'button')[0];
+
+    inputFields[0].value = 'hey';
+    Simulate.change(inputFields[0]);
+    expect(component.state.player1).to.equal('hey');
+
+    inputFields[1].value = 'ho';
+    Simulate.change(inputFields[1]);
+
+    expect(component.state.player2).to.equal('ho');
+  });
+
+  it('invokes callback when button is with the players', () => {
+    let callbackArguments = null;
+    const handleClick = (args) => callbackArguments = args;
 
     const component = renderIntoDocument(
       <NewGameForm addPlayers={handleClick} />
@@ -54,6 +73,6 @@ describe('new game form', () => {
     Simulate.change(inputFields[1]);
 
     Simulate.click(button[0]);
-    expect(callbackInvoked).to.equal(true);
+    expect(callbackArguments).to.equal(List(['hey', 'ho']));
   });
 });

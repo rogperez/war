@@ -16,6 +16,10 @@ function splitDeckForPlayers(state, players) {
 }
 
 function draw(state, drawer) {
+  if (state.getIn(['match', drawer])) {
+    return state;
+  }
+
   const playerDeck = state.getIn(['playerDecks', drawer]);
 
   const card = playerDeck.first();
@@ -203,9 +207,6 @@ export default function reducer(state=INITIAL_STATE, action) {
     return splitDeckForPlayers(state, action.players);
   case 'DRAW':
     const player = action.drawer;
-    if (state.getIn(['match', player])) {
-      console.log(`${player} CAN'T DRAW AGAIN!!`);
-    }
     return draw(state, player);
   case 'COMPARE':
     return compareMatch(state);

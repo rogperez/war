@@ -132,10 +132,14 @@ describe('reducer', () => {
 
     it('won\'t let player draw twice', () => {
       const player = 'Kanye';
+      const playersCard = '1A';
       const initialState = Map({
         playerDecks: Map({
           [player]: decks.first(),
           Fabolous: decks.last()
+        }),
+        match: Map({
+          [player]: playersCard
         })
       });
       const action = {type: 'DRAW', drawer: player};
@@ -144,7 +148,9 @@ describe('reducer', () => {
       nextState = reducer(nextState, action);
 
       const match = nextState.get('match').toJS()
-      expect(match).to.include.keys('Kanye');
+      const playerDecks = nextState.get('playerDecks').toJS();
+      expect(match[player]).to.equal(playersCard);
+      expect(playerDecks[player].length).to.equal(decks.first().size);
       expect(match).not.to.include.keys('Fabolous');
     });
 

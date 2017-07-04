@@ -24,6 +24,7 @@ const War = React.createClass({
   render: function() {
     return (
       <div className="war">
+        <button onClick={this.props.reset}>Reset Game</button>
         {
           this.getPlayers().length === 2 ?
             this.getPlayers().map(player =>
@@ -34,6 +35,7 @@ const War = React.createClass({
                   deck={this.getPlayerState(player).deck}
                   playCard={this.getPlayerState(player).playCard}
                   hiddenDeck={this.getPlayerState(player).hiddenDeck}
+                  {...this.props}
                 />
               </div>
             )

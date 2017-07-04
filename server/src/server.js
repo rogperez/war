@@ -14,7 +14,7 @@ export default function startServer(store) {
 
     socket.on('action', (action) => {
       store.dispatch(action);
-      console.log(store.getState().toJS());
+      //console.log(store.getState().toJS());
     });
 
     socket.on('getState', (callback) => {

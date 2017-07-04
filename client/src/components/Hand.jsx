@@ -8,7 +8,9 @@ export default React.createClass({
   // ------------> Render Helpers
   renderDeck: function() {
     if (this.props.deck) {
-      return <Deck deck={this.props.deck} />
+      return <Deck
+        draw={() => this.props.draw(this.props.player)}
+        deck={this.props.deck} />
     }
     return null;
   },

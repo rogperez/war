@@ -1,20 +1,37 @@
 export function setState(state) {
   return {
+    meta: { remote: false },
     type: 'SET_STATE',
     state
   };
 }
 
-export function draw(player) {
+export function draw(drawer) {
   return {
+    meta: { remote: true },
     type: 'DRAW',
-    drawer: player
+    drawer
   };
 }
 
 export function addPlayers(players) {
   return {
+    meta: { remote: true },
     type: 'ADD_PLAYERS',
-    players: players
+    players
+  }
+}
+
+export function reset() {
+  return {
+    meta: { remote: true },
+    type: 'RESET'
+  }
+}
+
+export function compare() {
+  return {
+    meta: { remote: true },
+    type: 'COMPARE'
   }
 }
