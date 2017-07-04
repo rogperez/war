@@ -6,6 +6,27 @@ It consists of two applications in one. A server side application app that runs 
 
 The client side application uses react and redux for the UI.
 
+## Run Locally
+
+clone repository
+```bash
+git clone git@github.com:rogperez/war.git
+```
+
+run server
+```bash
+cd war/server
+yarn install
+yarn start
+```
+
+run client app
+```bash
+cd war/client
+yarn install
+yarn run dev
+```
+
 ## Server side app
 
 For a sequence of actions on the server visit [this page](./server/README.md)
