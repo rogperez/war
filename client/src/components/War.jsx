@@ -30,13 +30,13 @@ const War = React.createClass({
           this.getPlayers().length === 2 ?
             this.getPlayers().map(player =>
               <div key={player}>
-                {player}
+                {player} {this.props.winner === player ? 'Winner!' : ''}
                 <Hand
                   player={player}
                   deck={this.getPlayerState(player).deck}
                   playCard={this.getPlayerState(player).playCard}
                   hiddenDeck={this.getPlayerState(player).hiddenDeck}
-                  winner={this.props.winner}
+                  winningPlayer={this.props.winner === player}
                   {...this.props}
                 />
               </div>

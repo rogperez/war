@@ -8,9 +8,14 @@ export default React.createClass({
   // ------------> Render Helpers
   renderDeck: function() {
     if (this.props.deck) {
-      return <Deck
-        draw={() => this.props.draw(this.props.player)}
-        deck={this.props.deck} />
+      return (
+        <div>
+          <Deck
+            draw={() => this.props.draw(this.props.player)}
+            deck={this.props.deck} />
+          <div>{this.props.deck.size}</div>
+        </div>
+      );
     }
     return null;
   },
@@ -30,11 +35,9 @@ export default React.createClass({
   },
 
   render: function() {
-    const winnerHand = this.props.winner === this.props.player;
-    const winnerClass = winnerHand ? 'winner' : '';
+    const winnerClass = this.props.winningPlayer ? 'winner' : '';
     const classList = `${winnerClass} hand`;
     return <div className={classList}>
-      {winnerHand ? <div classList={winnerClass}>Winner!</div>:null}
       {this.renderDeck()}
       {this.renderHiddenDeck()}
       {this.renderCard()}
