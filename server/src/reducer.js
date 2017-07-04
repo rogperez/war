@@ -149,7 +149,8 @@ function compareMatch(state) {
 }
 
 function resolve(state) {
-  const winner = state.get('winner');
+  const winner = state.get('winner', false);
+  if(!winner) return state;
   const players = Object.keys(state.get('match').toJS());
   let winningCards = [];
 
